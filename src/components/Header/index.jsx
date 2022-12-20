@@ -1,8 +1,8 @@
 import logo from "./logo.png"
 import iconeLupa from "./search.png"
-import styles from "./Cabecalho.module.scss"
+import styles from "./Header.module.scss"
 
-export default function Cabecalho() {
+export default function Header() {
   return (
     <header className={styles.cabecalho}>
       <img src={logo} alt="Logo do Alura Space" />
