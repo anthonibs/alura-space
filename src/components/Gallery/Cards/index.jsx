@@ -1,11 +1,36 @@
 // import styles from './Cards.module.scss'
-import like from "./favorito.png"
-import openModal from "./open.png"
+import { useCallback, useEffect, useState } from "react"
 
-export default function Cards({ items, styles }) {
+import { AiOutlineHeart, AiFillHeart, AiOutlineExpandAlt } from 'react-icons/ai'
+
+export default function Cards({ items, styles, filtro }) {
+
+  const [lista, setLista] = useState(items)
+
+  const testaFiltro = useCallback((tag) => {
+    if (filtro !== null) {
+      return filtro === tag;
+    }
+
+  }, [filtro])
+
+
+
+  useEffect(() => {
+    const handleListaAtualizada = items.filter(item => {
+      if (filtro === "Total") {
+        return items
+      }
+      return testaFiltro(item.tag)
+    })
+
+    handleListaAtualizada.length === 0 ? setLista(items) : setLista(handleListaAtualizada)
+
+  }, [filtro, items, testaFiltro])
+
   return (
     <ul className={styles.galeria__cards}>
-      {items.map(item => (
+      {lista.map(item => (
         <li
           key={item.id}
           className={styles.galeria__card}
@@ -19,8 +44,13 @@ export default function Cards({ items, styles }) {
           <div>
             <p>{item.creditos}</p>
             <span>
-              <img src={like} alt="Ícone coração de curtir" />
-              <img src={openModal} alt="Ícone de abrir modal" />
+              <button>
+                <AiOutlineHeart />
+              </button>
+
+              <button>
+                <AiOutlineExpandAlt />
+              </button>
             </span>
           </div>
         </li>

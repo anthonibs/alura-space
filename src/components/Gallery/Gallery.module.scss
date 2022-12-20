@@ -3,6 +3,7 @@
 .galeria {
   font-family: $fonte-normal;
   margin-bottom: 2rem;
+  position: relative;
 
   h2 {
     color: $roxo;
@@ -54,8 +55,14 @@
         justify-content: space-between;
         align-items: center;
 
-        img {
-          cursor: pointer;
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: transparent;
+          border: none;
+          font-size: 22px;
+          color: white;
         }
       }
     }
